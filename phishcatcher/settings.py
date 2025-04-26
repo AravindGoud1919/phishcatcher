@@ -16,7 +16,7 @@ SECRET_KEY = 'django-insecure-o%757t@*jz#8*pgqerl7-==)kdj*+@k#odf456so10$&x(aaf%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['phishcatcher.onrender.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['phishcatcher.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -109,4 +109,5 @@ STATIC_URL = '/static/'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CSRF_TRUSTED_ORIGINS = ['https://phishcatcher.onrender.com']
 
