@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scan Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card shadow p-4">
+            <h3 class="text-center">🛡️ Scan Result</h3>
+            <p><strong>Scanned URL:</strong> {{ url }}</p>
+
+            {% if result == 'Phishing Website Detected!' %}
+                <div class="alert alert-danger text-center">
+                    <strong>{{ result }}</strong>
+                </div>
+            {% else %}
+                <div class="alert alert-success text-center">
+                    <strong>{{ result }}</strong>
+                </div>
+            {% endif %}
+
+            <div class="text-center mt-3">
+                <a href="{% url 'home' %}" class="btn btn-secondary">🔁 Scan Another URL</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

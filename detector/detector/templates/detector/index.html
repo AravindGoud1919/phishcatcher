@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PhishCatcher - Scan URL</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .scanner-container {
+            max-width: 600px;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container scanner-container">
+        <div class="card shadow p-4">
+            <h2 class="text-center mb-4 text-primary">🔍 PhishCatcher</h2>
+            <form method="post" action="{% url 'scan_url' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">Enter URL to scan:</label>
+                    <input type="text" name="url" class="form-control" placeholder="https://example.com" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Scan URL</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
