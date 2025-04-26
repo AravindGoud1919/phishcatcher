@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from .models import ScanHistory
 
-# 1. Feature explanation for UI
+# 1. Feature explanation map
 feature_labels = {
     0: "IP address in URL",
     1: "Unusually long URL",
@@ -26,7 +26,7 @@ feature_labels = {
 model_path = os.path.join(os.path.dirname(__file__), 'phish_model.pkl')
 model = joblib.load(model_path)
 
-# 3. Shared logic: extract features from URL
+# 3. Extract features from URL
 def extract_features(url):
     return [
         1 if re.match(r"^(http|https):\/\/\d+\.\d+\.\d+\.\d+", url) else -1,
@@ -41,7 +41,7 @@ def extract_features(url):
         1 if ".com" in url or ".org" in url else 0
     ]
 
-# 4. Normal Website Scanner (HTML form)
+# 4. HTML-based form scanner
 def scan_url(request):
     result = None
     explanation = []
@@ -63,12 +63,12 @@ def scan_url(request):
         'url': url
     })
 
-# 5. View all previous scans
+# 5. View past scan history
 def view_history(request):
     scans = ScanHistory.objects.all().order_by('-scanned_at')
     return render(request, 'detector/history.html', {'scans': scans})
 
-# 6. Chrome Extension API
+# 6. API endpoint for Chrome Extension
 @csrf_exempt
 def api_scan(request):
     if request.method == 'POST':
@@ -78,8 +78,13 @@ def api_scan(request):
             features = extract_features(url)
             prediction = model.predict([features])[0]
             result = "Phishing Website Detected!" if prediction == 1 else "Legitimate Website!"
+            explanation = [feature_labels[i] for i, val in enumerate(features) if val == 1]
             ScanHistory.objects.create(url=url, result=result)
-            return JsonResponse({"result": result})
+            return JsonResponse({
+                "url": url,
+                "result": result,
+                "explanation": explanation
+            })
         except Exception as e:
             return JsonResponse({"error": str(e)})
     return JsonResponse({"error": "Only POST allowed"})
