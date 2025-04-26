@@ -16,7 +16,7 @@ SECRET_KEY = 'django-insecure-o%757t@*jz#8*pgqerl7-==)kdj*+@k#odf456so10$&x(aaf%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['phishcatcher.onrender.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
