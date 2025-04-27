@@ -68,7 +68,7 @@ WSGI_APPLICATION = 'phishcatcher.wsgi.application'
 # ✅ MySQL Database Configuration
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
         'USER': 'root',
         'PASSWORD': 'Aravind@0108',  # Replace with your actual password
