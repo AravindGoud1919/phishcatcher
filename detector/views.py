@@ -73,7 +73,7 @@ def view_history(request):
 def api_scan(request):
     if request.method == 'POST':
         try:
-            data = json.loads(request.body)
+            data = json.loads(request.body.decode('utf-8'))   # ✅ decode the body before json.loads
             url = data.get('url', '')
             features = extract_features(url)
             prediction = model.predict([features])[0]
@@ -87,4 +87,5 @@ def api_scan(request):
             })
         except Exception as e:
             return JsonResponse({"error": str(e)})
+
     return JsonResponse({"error": "Only POST allowed"})
