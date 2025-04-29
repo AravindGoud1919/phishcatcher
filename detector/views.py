@@ -69,7 +69,7 @@ def view_history(request):
 
     # Split the features into list form
      for scan in scans:
-        scan.reasons = scan.features_triggered.split(",") if scan.features_triggered else []
+         scan.reasons = scan.features_triggered.split(",") if scan.features_triggered else []
 
      return render(request, 'detector/history.html', {'scans': scans})
 
