@@ -94,7 +94,7 @@
             <td class="text-start explanation">
               {% if scan.features_triggered %}
                 {% for reason in scan.features_triggered.split(",") %}
-                  <div class="reason-item">• {{ reason.strip }}</div>
+                  <div class="reason-item">• {{ reason}}</div>
                 {% endfor %}
               {% else %}
                 <span class="text-muted">-</span>
