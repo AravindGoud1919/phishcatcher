@@ -65,9 +65,9 @@ def scan_url(request):
 
 # 5. View past scan history
 def view_history(request):
-     scans = ScanHistory.objects.all().order_by('-scanned_at')
+     scans = ScanHistory.objects.all().order_by('-scanned_at')[:100]
 
-    # Split the features into list form
+     # Split the features into list form
      for scan in scans:
          scan.reasons = scan.features_triggered.split(",") if scan.features_triggered else []
 
