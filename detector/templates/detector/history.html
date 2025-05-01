@@ -91,16 +91,16 @@
               {% endif %}
             </td>
             <td>{{ scan.scanned_at }}</td>
-            <td class="text-start explanation">
-              {% if scan.features_triggered %}
-                {% for reason in scan.features_triggered(",") %}
-                  <div class="reason-item">• {{ reason}}</div>
-                {% endfor %}
-              {% else %}
-                <span class="text-muted">-</span>
-              {% endif %}
-            </td>
-          </tr>
+             <td class="text-start explanation">
+  {% if scan.reasons %}
+    {% for reason in scan.reasons %}
+      <div class="reason-item">• {{ reason }}</div>
+    {% endfor %}
+  {% else %}
+    <span class="text-muted">-</span>
+  {% endif %}
+</td>
+         </tr>
           {% endfor %}
         </tbody>
       </table>
