@@ -55,7 +55,11 @@ def scan_url(request):
                 explanation.append(feature_labels[i])
         prediction = model.predict([features])[0]
         result = "Phishing Website Detected!" if prediction == 1 else "Legitimate Website!"
-        ScanHistory.objects.create(url=url, result=result)
+        ScanHistory.objects.create(
+        url=url,
+        result=result,
+        features_triggered=", ".join(explanation)
+        )
 
     return render(request, 'detector/scan_url.html', {
         'result': result,
@@ -65,9 +69,12 @@ def scan_url(request):
 
 # 5. View all previous scans
 def view_history(request):
-    scans = ScanHistory.objects.all().order_by('-scanned_at')
-    return render(request, 'detector/history.html', {'scans': scans})
+     scans = ScanHistory.objects.all().order_by('-scanned_at')
 
+    # Split the features into list form
+     for scan in scans:
+        scan.reasons = scan.features_triggered.split(",") if scan.features_triggered else []
+     return render(request, 'detector/history.html', {'scans': scans})
 # 6. Chrome Extension API
 @csrf_exempt
 def api_scan(request):
@@ -78,7 +85,11 @@ def api_scan(request):
             features = extract_features(url)
             prediction = model.predict([features])[0]
             result = "Phishing Website Detected!" if prediction == 1 else "Legitimate Website!"
-            ScanHistory.objects.create(url=url, result=result)
+            ScanHistory.objects.create(
+            url=url,
+            result=result,
+            features_triggered=", ".join(explanation)
+            ) 
             return JsonResponse({"result": result})
         except Exception as e:
             return JsonResponse({"error": str(e)})

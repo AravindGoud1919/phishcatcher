@@ -38,7 +38,7 @@ def extract_features(url):
         1 if "https" in url and not url.startswith("https://") else -1,
         1 if any(ext in url for ext in ['.jpg', '.png', '.js']) else -1,
         1 if url.startswith("http://") else -1,
-        1 if ".com" in url or ".org" in url else 0
+        1 if not(".com" in url or ".org" in url)else -1
     ]
 
 # 4. HTML-based form scanner
@@ -81,13 +81,18 @@ def view_history(request):
 def api_scan(request):
     if request.method == 'POST':
         try:
-            data = json.loads(request.body.decode('utf-8'))   # ✅ decode the body before json.loads
+            data = json.loads(request.body.decode('utf-8'))
             url = data.get('url', '')
             features = extract_features(url)
             prediction = model.predict([features])[0]
             result = "Phishing Website Detected!" if prediction == 1 else "Legitimate Website!"
-            ScanHistory.objects.create(url=url, result=result)
-            return JsonResponse({"result": result})
+            explanation = [feature_labels[i] for i, val in enumerate(features) if val == 1]
+            ScanHistory.objects.create(
+                url=url,
+                result=result,
+                features_triggered=",".join(explanation)  # ✅ saves reason
+            )
+            return JsonResponse({"result": result, "explanation": explanation})
         except Exception as e:
             return JsonResponse({"error": str(e)})
     return JsonResponse({"error": "Only POST allowed"})
