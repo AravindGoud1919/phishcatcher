@@ -1,0 +1,335 @@
+[
+  {
+    "url": "http://bit.ly/abc@malicious-login.com",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-08T21:30:22.869967",
+    "top_words": [
+      "abc",
+      "bit",
+      "ly",
+      "login",
+      "http"
+    ]
+  },
+  {
+    "url": "minspark.in",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-08T22:06:34.840968",
+    "top_words": [
+      "in"
+    ]
+  },
+  {
+    "url": "chatgpt.com",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-08T22:06:40.173725",
+    "top_words": [
+      "com"
+    ]
+  },
+  {
+    "url": "google.com",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-08T22:06:45.622974",
+    "top_words": [
+      "google",
+      "com"
+    ]
+  },
+  {
+    "url": "google.com",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-10T12:53:22.230609",
+    "top_words": [
+      "google",
+      "com"
+    ]
+  },
+  {
+    "url": "minspark.in",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-10T12:53:27.664590",
+    "top_words": [
+      "in"
+    ]
+  },
+  {
+    "url": "http://bit.ly/abc-fake-login",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-10T14:28:26.855427",
+    "top_words": [
+      "abc",
+      "bit",
+      "ly",
+      "login",
+      "http"
+    ]
+  },
+  {
+    "url": "minspark.in",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-10T14:55:49.447194",
+    "top_words": [
+      "in"
+    ]
+  },
+  {
+    "url": "https://www.google.com",
+    "result": "Legitimate Website!",
+    "timestamp": "2025-05-10T14:56:08.594885",
+    "top_words": [
+      "google",
+      "www",
+      "com",
+      "https"
+    ]
+  },
+  {
+    "url": "minspark.in",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-10T14:57:44.410058",
+    "top_words": [
+      "in"
+    ]
+  },
+  {
+    "url": "chatgpt.com",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-10T14:57:48.718497",
+    "top_words": [
+      "com"
+    ]
+  },
+  {
+    "url": "https://openai.com/chat",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-10T14:57:59.533133",
+    "top_words": [
+      "chat",
+      "com",
+      "https"
+    ]
+  },
+  {
+    "url": "chatgpt.com",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-10T14:58:03.993350",
+    "top_words": [
+      "com"
+    ]
+  },
+  {
+    "url": "www.minspark.in",
+    "result": "Legitimate Website!",
+    "timestamp": "2025-05-10T14:58:56.076362",
+    "top_words": [
+      "in",
+      "www"
+    ]
+  },
+  {
+    "url": "https://www.google.com",
+    "result": "Legitimate Website!",
+    "timestamp": "2025-05-10T15:00:21.259786",
+    "top_words": [
+      "google",
+      "www",
+      "com",
+      "https"
+    ]
+  },
+  {
+    "url": "minspark.in",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-10T15:04:00.576164",
+    "top_words": [
+      "in"
+    ]
+  },
+  {
+    "url": "chatgpt.com",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-10T15:04:05.766366",
+    "top_words": [
+      "com"
+    ]
+  },
+  {
+    "url": "https://www.google.com",
+    "result": "Legitimate Website!",
+    "timestamp": "2025-05-10T15:04:10.382217",
+    "top_words": [
+      "google",
+      "www",
+      "com",
+      "https"
+    ]
+  },
+  {
+    "url": "minspark.in",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-10T21:14:56.377787",
+    "top_words": [
+      "in"
+    ]
+  },
+  {
+    "url": "https://www.google.com",
+    "result": "Legitimate Website!",
+    "timestamp": "2025-05-10T21:15:02.112237",
+    "top_words": [
+      "google",
+      "www",
+      "com",
+      "https"
+    ]
+  },
+  {
+    "url": "https://www.google.com",
+    "result": "Legitimate Website!",
+    "timestamp": "2025-05-10T21:23:50.218530",
+    "top_words": [
+      "google",
+      "www",
+      "com",
+      "https"
+    ]
+  },
+  {
+    "url": "minspark.in",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-11T16:42:57.099267",
+    "top_words": [
+      "in"
+    ]
+  },
+  {
+    "url": "google.com",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-11T16:43:01.862712",
+    "top_words": [
+      "google",
+      "com"
+    ]
+  },
+  {
+    "url": "https://www.google.com",
+    "result": "Legitimate Website!",
+    "timestamp": "2025-05-11T16:43:07.113614",
+    "top_words": [
+      "google",
+      "www",
+      "com",
+      "https"
+    ]
+  },
+  {
+    "url": "minspark.in",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-11T20:01:33.407588",
+    "top_words": [
+      "in"
+    ]
+  },
+  {
+    "url": "chatgpt.com",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-11T20:01:38.447653",
+    "top_words": [
+      "com"
+    ]
+  },
+  {
+    "url": "chatgpt.com",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-11T20:01:43.903335",
+    "top_words": [
+      "com"
+    ]
+  },
+  {
+    "url": "google.com",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-11T20:01:48.266973",
+    "top_words": [
+      "google",
+      "com"
+    ]
+  },
+  {
+    "url": "https://www.google.com",
+    "result": "Legitimate Website!",
+    "timestamp": "2025-05-11T20:01:52.203151",
+    "top_words": [
+      "google",
+      "www",
+      "com",
+      "https"
+    ]
+  },
+  {
+    "url": "http://bit.ly/abc@malicious-login.com",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-11T20:01:56.917890",
+    "top_words": [
+      "abc",
+      "bit",
+      "ly",
+      "login",
+      "http"
+    ]
+  },
+  {
+    "url": "google.com",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-11T20:21:00.600862",
+    "top_words": [
+      "google",
+      "com"
+    ]
+  },
+  {
+    "url": "minspark.in",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-11T21:22:06.346678",
+    "top_words": [
+      "in"
+    ]
+  },
+  {
+    "url": "chatgpt.com",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-11T21:22:10.815068",
+    "top_words": [
+      "com"
+    ]
+  },
+  {
+    "url": "chatgpt.com",
+    "result": "Phishing Website!",
+    "timestamp": "2025-05-11T21:22:30.528111",
+    "top_words": [
+      "com"
+    ]
+  },
+  {
+    "url": "https://www.google.com",
+    "result": "Legitimate Website!",
+    "timestamp": "2025-06-05T21:51:16.396663"
+  },
+  {
+    "url": "http://bit.ly/abc@malicious-login.com",
+    "result": "Phishing Website!",
+    "timestamp": "2025-06-05T21:51:20.965015"
+  },
+  {
+    "url": "minspark.in",
+    "result": "Phishing Website!",
+    "timestamp": "2025-06-30T10:49:58.283163"
+  },
+  {
+    "url": "https://example.com",
+    "result": "Phishing Website!",
+    "timestamp": "2025-06-30T11:19:52.026814"
+  }
+]

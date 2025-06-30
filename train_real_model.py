@@ -1,34 +1,38 @@
 import pandas as pd
-import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
+import joblib
+import os
 
-# 1. Load dataset
-df = pd.read_csv("dataset/phishing_data_real.csv").dropna()
-df = df.rename(columns={"url": "URL", "label": "Label"})
+# Load phishing and legitimate datasets
+phish_df = pd.read_csv("dataset/phishing_data_real.csv")
+legit_df = pd.read_csv("dataset/legitimate_urls.csv")
 
-# 2. Encode label
-df["Label"] = df["Label"].apply(lambda x: 1 if x.lower() == "phishing" else 0)
+# Clean and label
+phish_df['label'] = 'phishing'
+legit_df['label'] = 'legitimate'
 
-# 3. Vectorize URLs using TF-IDF
+# Combine datasets
+df = pd.concat([phish_df, legit_df], ignore_index=True)
+df = df.dropna()
+
+print("🔍 Dataset Summary:")
+print(df['label'].value_counts())
+
+# Convert label to numeric
+df['label'] = df['label'].map({'legitimate': 0, 'phishing': 1})
+
+# TF-IDF vectorization
 vectorizer = TfidfVectorizer()
-X = vectorizer.fit_transform(df["URL"])
-y = df["Label"]
+X = vectorizer.fit_transform(df['url'])
+y = df['label']
 
-# 4. Train-test split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# 5. Train RandomForest model
+# Train model
 model = RandomForestClassifier(n_estimators=100, random_state=42)
-model.fit(X_train, y_train)
+model.fit(X, y)
 
-# 6. Evaluate
-y_pred = model.predict(X_test)
-print(classification_report(y_test, y_pred))
+# Save model and vectorizer
+joblib.dump(model, 'detector/phish_model.pkl')
+joblib.dump(vectorizer, 'detector/vectorizer.pkl')
 
-# 7. Save model and vectorizer
-joblib.dump(model, "detector/phish_model.pkl")
-joblib.dump(vectorizer, "detector/vectorizer.pkl")
 print("✅ Model and vectorizer saved successfully!")

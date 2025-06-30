@@ -1,52 +1,128 @@
 import os
-import joblib
 import json
-from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
+import datetime
+from detector.smart_features import URLFeatures
+from detector.utils import extract_url_text
+import joblib
+
 from django.http import JsonResponse
-from .models import ScanHistory
+from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render
+from urllib.parse import unquote
 
-# 1. Load vectorizer and model
-BASE_DIR = os.path.dirname(__file__)
-model = joblib.load(os.path.join(BASE_DIR, 'phish_model.pkl'))
-vectorizer = joblib.load(os.path.join(BASE_DIR, 'vectorizer.pkl'))
+# Load trained model (which includes both TF-IDF + custom features)
+model_path = os.path.join(os.path.dirname(__file__), 'phish_model.pkl')
+model = joblib.load(model_path)
 
-# 2. HTML scanner view
+def scan_logic(url):
+    # ✅ Predict using full pipeline model
+    prediction = model.predict([url])[0]
+    prediction_label = 'Phishing Website!' if prediction == 1 else 'Legitimate Website!'
+
+    # ✅ Create scan log entry
+    log_entry = {
+        'url': url,
+        'result': prediction_label,
+        'timestamp': datetime.datetime.now().isoformat()
+    }
+
+    # ✅ Save to scan_log.json
+    log_path = os.path.join(os.path.dirname(__file__), 'scan_log.json')
+    if os.path.exists(log_path):
+        with open(log_path, 'r+') as f:
+            try:
+                logs = json.load(f)
+            except json.JSONDecodeError:
+                logs = []
+            logs.append(log_entry)
+            f.seek(0)
+            json.dump(logs, f, indent=2)
+    else:
+        with open(log_path, 'w') as f:
+            json.dump([log_entry], f, indent=2)
+
+    return prediction_label
+
+@csrf_exempt
 def scan_url(request):
     result = None
-    explanation = []
     url = ""
+    explanation = []
 
     if request.method == 'POST':
-        url = request.POST.get('url')
-        features = vectorizer.transform([url])
-        prediction = model.predict(features)[0]
-        result = "Phishing Website Detected!" if prediction == 1 else "Legitimate Website!"
-        ScanHistory.objects.create(url=url, result=result)
-    
+        try:
+            data = json.loads(request.body) if request.content_type == 'application/json' else request.POST
+            url = data.get('url', '').strip()
+
+            if url:
+                result = scan_logic(url)
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON data'}, status=400)
+
+    elif request.method == 'GET':
+        url = request.GET.get('url', '').strip()
+        if url:
+            result = scan_logic(url)
+
     return render(request, 'detector/scan_url.html', {
+        'url': url,
         'result': result,
-        'explanation': explanation,
-        'url': url
+        'explanation': explanation  # Keep placeholder if you add reasons later
     })
 
-# 3. History view
-def view_history(request):
-    scans = ScanHistory.objects.all().order_by('-scanned_at')[:100]
-    return render(request, 'detector/history.html', {'scans': scans})
-
-# 4. API for Chrome Extension
 @csrf_exempt
 def api_scan(request):
     if request.method == 'POST':
         try:
-            data = json.loads(request.body.decode('utf-8'))
-            url = data.get('url', '')
-            features = vectorizer.transform([url])
-            prediction = model.predict(features)[0]
-            result = "Phishing Website Detected!" if prediction == 1 else "Legitimate Website!"
-            ScanHistory.objects.create(url=url, result=result)
-            return JsonResponse({"result": result})
-        except Exception as e:
-            return JsonResponse({"error": str(e)})
-    return JsonResponse({"error": "Only POST allowed"})
+            data = json.loads(request.body)
+            url = data.get('url', '').strip()
+
+            if not url:
+                return JsonResponse({'error': 'No URL provided'}, status=400)
+
+            result = scan_logic(url)
+
+            return JsonResponse({
+                'result': result
+            })
+
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON'}, status=400)
+
+    return JsonResponse({'error': 'Only POST requests allowed'}, status=405)
+
+def view_history(request):
+    log_file_path = os.path.join(os.path.dirname(__file__), 'scan_log.json')
+
+    if os.path.exists(log_file_path):
+        with open(log_file_path, 'r') as f:
+            try:
+                data = json.load(f)
+                # ✅ Format timestamps for display
+                for entry in data:
+                    if 'timestamp' in entry:
+                        try:
+                            dt = datetime.datetime.fromisoformat(entry['timestamp'])
+                            entry['timestamp'] = dt.strftime("%d %b %Y, %I:%M %p")
+                        except:
+                            pass
+            except json.JSONDecodeError:
+                data = {"error": "Log file is corrupted"}
+    else:
+        data = {"message": "No scan history found."}
+
+    return render(request, 'detector/history.html', {'scans': data})
+
+def view_result(request):
+    url = request.GET.get('url', '')
+    result = None
+    explanation = None
+
+    if url:
+        result = scan_logic(url)
+
+    return render(request, 'detector/scan_url.html', {
+        'url': url,
+        'result': result,
+        'explanation': explanation
+    })
