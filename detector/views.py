@@ -9,7 +9,8 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from urllib.parse import unquote
-from .views import scan_logic 
+from .scan_logic import scan_logic  # ✅
+ 
 
 # Load trained model (which includes both TF-IDF + custom features)
 model_path = os.path.join(os.path.dirname(__file__), 'phish_model.pkl')
