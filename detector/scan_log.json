@@ -331,5 +331,120 @@
     "url": "https://example.com",
     "result": "Phishing Website!",
     "timestamp": "2025-06-30T11:19:52.026814"
+  },
+  {
+    "url": "minspark.in",
+    "result": "Phishing Website!",
+    "timestamp": "2025-07-01T15:58:34.306471"
+  },
+  {
+    "url": "chatgpt.com",
+    "result": "Phishing Website!",
+    "timestamp": "2025-07-01T15:58:44.493036"
+  },
+  {
+    "url": "https://www.google.com",
+    "result": "Legitimate Website!",
+    "timestamp": "2025-07-01T15:58:55.102445"
+  },
+  {
+    "url": "google.com",
+    "result": "Phishing Website!",
+    "timestamp": "2025-07-01T15:58:59.435238"
+  },
+  {
+    "url": "https://openai.com/chat",
+    "result": "Phishing Website!",
+    "timestamp": "2025-07-01T15:59:05.971694"
+  },
+  {
+    "url": "https://openai.com/chat",
+    "result": "Phishing Website!",
+    "timestamp": "2025-07-01T16:00:15.759029"
+  },
+  {
+    "url": "https://openai.com/chat",
+    "result": "Phishing Website!",
+    "timestamp": "2025-07-01T16:00:22.863496"
+  },
+  {
+    "url": "minspark.in",
+    "result": "Phishing Website!",
+    "timestamp": "2025-07-01T16:00:26.787995"
+  },
+  {
+    "url": "minspark.in",
+    "result": "Phishing Website!",
+    "timestamp": "2025-07-01T16:00:46.848088"
+  },
+  {
+    "url": "minspark.in",
+    "result": "Phishing Website!",
+    "timestamp": "2025-07-01T16:04:54.226332"
+  },
+  {
+    "url": "minspark.in",
+    "result": "Phishing Website!",
+    "timestamp": "2025-07-01T16:09:33.781166"
+  },
+  {
+    "url": "chatgpt.com",
+    "prediction": "Phishing Website!",
+    "timestamp": "2025-07-01T16:18:18.040450"
+  },
+  {
+    "url": "http://bit.ly/abc@malicious-login.com",
+    "prediction": "Phishing Website!",
+    "timestamp": "2025-07-01T16:18:24.877412"
+  },
+  {
+    "url": "https://www.google.com",
+    "prediction": "Legitimate Website!",
+    "timestamp": "2025-07-01T20:05:51.268662"
+  },
+  {
+    "url": "minspark.in",
+    "prediction": "Phishing Website!",
+    "timestamp": "2025-07-10T00:02:03.139398"
+  },
+  {
+    "url": "https://www.google.com",
+    "prediction": "Legitimate Website!",
+    "timestamp": "2025-07-10T00:02:12.616626"
+  },
+  {
+    "url": "chatgpt.com",
+    "prediction": "Phishing Website!",
+    "timestamp": "2025-07-10T00:02:17.508694"
+  },
+  {
+    "url": "https://openai.com/chat",
+    "prediction": "Phishing Website!",
+    "timestamp": "2025-07-10T00:02:26.706854"
+  },
+  {
+    "url": "http://bit.ly/abc@malicious-login.com",
+    "prediction": "Phishing Website!",
+    "timestamp": "2025-07-10T00:02:33.715026"
+  },
+  {
+    "url": "minspark.in",
+    "prediction": "Phishing Website!",
+    "timestamp": "2025-07-10T00:48:18.247577"
+  },
+  {
+    "url": "chatgpt.com",
+    "prediction": "Legitimate Website!",
+    "timestamp": "2025-07-10T00:52:19.712898"
+  },
+  {
+    "url": "https://www.google.com",
+    "prediction": "Legitimate Website!",
+    "timestamp": "2025-07-10T00:52:25.980909"
+  },
+  {
+    "url": "http://bit.ly/abc@malicious-login.com",
+    "prediction": "Phishing Website!",
+    "timestamp": "2025-07-10T00:52:30.921613"
   }
 ]
