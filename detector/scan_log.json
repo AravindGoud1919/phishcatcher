@@ -446,5 +446,109 @@
     "url": "http://bit.ly/abc@malicious-login.com",
     "prediction": "Phishing Website!",
     "timestamp": "2025-07-10T00:52:30.921613"
+  },
+  {
+    "url": "http://bit.ly/abc@malicious-login.com",
+    "prediction": "Phishing Website!",
+    "timestamp": "2025-07-11T08:26:00.910480",
+    "top_words": [
+      "Detected by URL features (e.g., length, symbols, HTTPS)"
+    ]
+  },
+  {
+    "url": "google.com",
+    "prediction": "Phishing Website!",
+    "timestamp": "2025-07-11T08:26:42.388997",
+    "top_words": [
+      "Detected by URL features (e.g., length, symbols, HTTPS)"
+    ]
+  },
+  {
+    "url": "https://www.google.com",
+    "prediction": "Legitimate Website!",
+    "timestamp": "2025-07-11T08:26:51.956002",
+    "top_words": [
+      "This domain is in the known safe list."
+    ]
+  },
+  {
+    "url": "chatgpt.com",
+    "prediction": "Phishing Website!",
+    "timestamp": "2025-07-11T15:37:04.956557",
+    "top_words": [
+      "Detected by URL features (e.g., length, symbols, HTTPS)"
+    ]
+  },
+  {
+    "url": "https://www.google.com",
+    "prediction": "Legitimate Website!",
+    "timestamp": "2025-07-11T15:37:09.237945",
+    "top_words": [
+      "This domain is in the known safe list."
+    ]
+  },
+  {
+    "url": "https://www.google.com",
+    "prediction": "Legitimate Website!",
+    "timestamp": "2025-07-11T15:39:22.895727",
+    "top_words": [
+      "This domain is in the known safe list."
+    ]
+  },
+  {
+    "url": "http://bit.ly/abc@malicious-login.com",
+    "prediction": "Phishing Website!",
+    "timestamp": "2025-07-11T15:39:27.976120",
+    "top_words": [
+      "Detected by URL features (e.g., length, symbols, HTTPS)"
+    ]
+  },
+  {
+    "url": "https://www.google.com",
+    "prediction": "Legitimate Website!",
+    "timestamp": "2025-07-23T12:04:07.104642",
+    "top_words": [
+      "This domain is in the known safe list."
+    ]
+  },
+  {
+    "url": "chatgpt.com",
+    "prediction": "Phishing Website!",
+    "timestamp": "2025-07-23T12:04:13.376775",
+    "top_words": [
+      "Detected by URL features (e.g., length, symbols, HTTPS)"
+    ]
+  },
+  {
+    "url": "chatgpt.com",
+    "prediction": "Legitimate Website!",
+    "timestamp": "2025-07-23T12:19:40.890623",
+    "top_words": [
+      "\u2705 Trusted domain (whitelisted)"
+    ]
+  },
+  {
+    "url": "google.com",
+    "prediction": "Legitimate Website!",
+    "timestamp": "2025-07-23T12:19:46.019749",
+    "top_words": [
+      "\u2705 Trusted domain (whitelisted)"
+    ]
+  },
+  {
+    "url": "minspark.in",
+    "prediction": "Phishing Website!",
+    "timestamp": "2025-07-23T12:19:52.920259",
+    "top_words": [
+      "\u26a0\ufe0f Detected by URL features (e.g., length, symbols, HTTPS)"
+    ]
+  },
+  {
+    "url": "minspark.in",
+    "prediction": "Legitimate Website!",
+    "timestamp": "2025-07-23T12:32:50.403613",
+    "top_words": [
+      "\u2705 Trusted domain (whitelisted)"
+    ]
   }
 ]
