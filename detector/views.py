@@ -24,9 +24,10 @@ model = joblib.load(model_path)
 SAFE_DOMAINS = [
     'openai.com', 'chatgpt.com', 'google.com',
     'github.com', 'youtube.com', 'microsoft.com',
-    'apple.com', 'amazon.com',
-    'minspark.in'  # <-- Add this
+    'apple.com', 'amazon.com', 'minspark.in',
+    'render.com'  # ✅ Add this
 ]
+
 
 
 def is_whitelisted(url):
