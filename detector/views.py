@@ -1,7 +1,7 @@
-# views.py
 import os
 import json
 import datetime
+import tldextract
 from urllib.parse import urlparse
 
 from django.shortcuts import render, redirect
@@ -23,26 +23,31 @@ model = joblib.load(model_path)
 # === Safe domain whitelist ===
 SAFE_DOMAINS = [
     'openai.com', 'chatgpt.com', 'google.com',
-    'github.com', 'youtube.com', 'microsoft.com'
+    'github.com', 'youtube.com', 'microsoft.com',
+    'apple.com', 'amazon.com',
+    'minspark.in'  # <-- Add this
 ]
 
+
 def is_whitelisted(url):
-    domain = urlparse(url).netloc.replace("www.", "")
-    return any(domain == safe or domain.endswith("." + safe) for safe in SAFE_DOMAINS)
+    domain = tldextract.extract(url).registered_domain
+    return domain in SAFE_DOMAINS
 
 # === Core scanner ===
 def scan_logic(url):
     if is_whitelisted(url):
         prediction_label = 'Legitimate Website!'
-        top_words = ['This domain is in the known safe list.']
+        top_words = ['✅ Trusted domain (whitelisted)']
     else:
-        prediction = model.predict([url])[0]
+        try:
+            prediction = model.predict([url])[0]
+        except:
+            prediction = 0  # fallback
+
         prediction_label = 'Phishing Website!' if prediction == 1 else 'Legitimate Website!'
+        top_words = ["⚠️ Detected by URL features (e.g., length, symbols, HTTPS)"]
 
-        # Fallback for non-TFIDF models like smart features
-        top_words = ["Detected by URL features (e.g., length, symbols, HTTPS)"]
-
-        # If model uses TF-IDF vectorizer
+        # Try extracting top TF-IDF features (if model supports)
         try:
             if hasattr(model, 'named_steps') and 'vectorizer' in model.named_steps:
                 vec = model.named_steps['vectorizer']
@@ -153,7 +158,7 @@ def view_history(request):
 
     return render(request, 'detector/history.html', {'scans': scans})
 
-# === Result Page (Optional) ===
+# === Result Page ===
 @login_required
 def view_result(request):
     url = request.GET.get('url', '')
