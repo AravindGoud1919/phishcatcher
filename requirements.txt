@@ -37,6 +37,7 @@ six==1.17.0
 soupsieve==2.6
 sqlparse==0.5.3
 tensorboard-data-server==0.7.2
+tldextract
 termcolor==2.5.0
 threadpoolctl==3.6.0
 tqdm==4.67.1
